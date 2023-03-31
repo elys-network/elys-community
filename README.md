@@ -1,6 +1,6 @@
 # Elys Network Community
 
-Elys Network <SAMPLE LANGUAGE>: s a complete ecosystem with complimentary parts components. Each component is a project and community in its own right. These communities consists of a diverse group of builders, developers, partners, and users for every part of the ecosysem. Despite the varying focuses and interests in the community, the same goal is shared of wanting to ensure decentralized connectivity across the globe. With each network and application built the community is committed to providing a place for sharing and organizing for each other.
+Elys Network <SAMPLE LANGUAGE> is a complete ecosystem with complimentary parts components. Each component is a project and community in its own right. These communities consists of a diverse group of builders, developers, partners, and users for every part of the ecosysem. Despite the varying focuses and interests in the community, the same goal is shared of wanting to ensure decentralized connectivity across the globe. With each network and application built the community is committed to providing a place for sharing and organizing for each other.
 
 The ecosystem and its communities consist of the following:
 
