@@ -59,4 +59,4 @@ Stay connected with the Elys Network community on any of the following
 * [YouTube](https://www.youtube.com/channel/LINKNEEDED): Check out Elys Network's youtube channel for talks and tutorials.
 * [Facebook](http://facebook.com/LINKNEEDED) 
 
-[<img src="https://img.shields.io/badge/Edit%20this%20page%20on-Github-lightgrey?style=flat-square">]([https://github.com/elys-network/elys-community/blob/main/README.md])
+[<img src="https://img.shields.io/badge/Edit%20this%20page%20on-Github-lightgrey?style=flat-square">]([[https://github.com/elys-network/elys-community/])
