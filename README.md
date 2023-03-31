@@ -10,18 +10,18 @@ The ecosystem and its communities consist of the following:
 
 <table>
   <tr>
-    <td>(Header 1)</td>
+    <td>Documentation</td>
   </tr>
   <tr>
     <td>
       <table>
         <tr>
-          <td><a href="./network/File1builders.md">Builders</a></td>
-          <td>File 1 developers</td>
+          <td><a href="./documentation/NEEDNAME">Builders</a></td>
+          <td>Elys Network Docs (https://docs.elys.network)</td>
         </tr>
         <tr>
-          <td><a href="./network/partners.md">Partners</a></td>
-          <td>partners</td>
+          <td><a href="./documentation/needname">Partners</a></td>
+          <td>Validator Set Up and Operations</td>
         </tr>
         </tr>
       </table> 
