@@ -10,24 +10,19 @@ The ecosystem and its communities consist of the following:
 
 <table>
   <tr>
-    <td>Building Networks</td>
+    <td>(Header 1)</td>
   </tr>
   <tr>
     <td>
       <table>
         <tr>
           <td><a href="./network/File1builders.md">Builders</a></td>
-          <td>File 1 builders/developers</td>
+          <td>File 1 developers</td>
         </tr>
         <tr>
           <td><a href="./network/partners.md">Partners</a></td>
-          <td>Communities and companies alike who build out networks to solve<br>
-          real world connectivity problems</td>
+          <td>partners</td>
         </tr>
-        <tr>
-          <td><a href="./network/file2end-users.md">End Users</a></td>
-          <td>File 2 The people who benefit directly from Elys Network the most by<br>
-          using it for Defi needs</td>
         </tr>
       </table> 
      </td>
