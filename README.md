@@ -23,6 +23,9 @@ The ecosystem and its communities consist of the following:
           <td><a href="./documentation/needname">Validators</a></td>
           <td>Validator Set Up and Operations</td>
         </tr>
+        <tr>
+          <td><a href="./documentation/needname">IBC Relayer Guide</a></td>
+          <td>IBC Relayer Set Up and Operations</td>
         </tr>
       </table> 
      </td>
