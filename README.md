@@ -16,7 +16,7 @@ The ecosystem and its communities consist of the following:
     <td>
       <table>
         <tr>
-          <td><a href="./documentation/NEEDNAME">Documentation</a></td>
+          <td><a href="https://elys-network.gitbook.io/">Documentation</a></td>
           <td>Elys Network Docs (https://elys-network.gitbook.io/)</td>
         </tr>
         <tr>
