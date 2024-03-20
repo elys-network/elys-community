@@ -55,7 +55,7 @@ The ecosystem and its communities consist of the following:
 
 Stay connected with the Elys Network community with all links available on LinkTree
 
-* [LinkTree](https://linktr.ee/elysnetwork): Follow @elys_network on our socials for up to date announcements, events, news, ideas.
+* [LinkTree](https://linktr.ee/elysnetwork): Follow us on our socials for up to date announcements, events, news, ideas.
 
   
 
