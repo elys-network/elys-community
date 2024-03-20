@@ -35,11 +35,11 @@ The ecosystem and its communities consist of the following:
       <table>
         <tr>
           <td><a href="./defi/file3.md">Partners</a></td>
-          <td>File3 topic description</td>
+          <td>Coming Soon</td>
         </tr>
         <tr>
           <td><a href="./defi/File4participants.md">Participants</a></td>
-          <td>File4 Community who particpates in securing the Elys Network blockchain via<br>
+          <td>Community who particpates in securing the Elys Network blockchain via<br>
           votes and staking</td>
         </tr>
       </table> 
@@ -50,13 +50,10 @@ The ecosystem and its communities consist of the following:
 
 ## Discussions
 
-Stay connected with the Elys Network community on any of the following
+Stay connected with the Elys Network community with all links available on LinkTree
 
-* [Twitter](https://twitter.com/elys_network): Follow @elys_network for up to date announcements, events, news, ideas.
-* [GitHub](https://github.com/elys-network): All projects and issue tracking, plus Elys Network open source code.
-* [Discord](https://discord.gg/TQpFvbY6eA): Join our growing community on Discord!
-* [Reddit](https://reddit.com/r/LINKNEEDED): Get news and discussions at "the front page of the internet".
-* [YouTube](https://www.youtube.com/channel/LINKNEEDED): Check out Elys Network's youtube channel for talks and tutorials.
-* [Facebook](http://facebook.com/LINKNEEDED) 
+* [LinkTree](https://linktr.ee/elysnetwork): Follow @elys_network on our socials for up to date announcements, events, news, ideas.
+
+  
 
 [<img src="https://img.shields.io/badge/Edit%20this%20page%20on-Github-lightgrey?style=flat-square">]([[https://github.com/elys-network/elys-community/])
