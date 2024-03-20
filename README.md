@@ -20,7 +20,7 @@ The ecosystem and its communities consist of the following:
           <td>Elys Network Docs (https://elys-network.gitbook.io/)</td>
         </tr>
         <tr>
-          <td><a href="./documentation/needname">Validators</a></td>
+          <td><a href="https://github.com/elys-network/elys/blob/main/validator.md">Validators</a></td>
           <td>Validator Set Up and Operations</td>
         </tr>
         <tr>
