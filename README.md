@@ -25,7 +25,11 @@ The ecosystem and its communities consist of the following:
         </tr>
         <tr>
           <td><a href="./HERMES.md">IBC Relayer Guide (Hermes)</a></td>
-          <td>IBC Relayer Set Up and Operations</td>
+          <td>Hermes IBC Relayer Set Up and Operations</td>
+        </tr>
+         <tr>
+          <td><a href="./GO.md">IBC Relayer Guide (Go)</a></td>
+          <td>GO IBC Relayer Set Up and Operations</td>
         </tr>
       </table> 
      </td>
