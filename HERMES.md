@@ -7,8 +7,8 @@ Hermes is an IBC (Inter-Blockchain Communication) relayer implemented in Rust, u
 ---
 ## Prerequisites
 Before running Hermes, ensure you have the following:
-- Two IBC-enabled blockchain nodes running and accessible.
-- Network access to both blockchain nodes (rpc, grpc avalable)
+- Two IBC-enabled blockchain nodes running and accessible
+- Network access to both blockchain nodes (rpc, grpc available)
 
 ---
 ## Installation
@@ -45,7 +45,9 @@ hermes version
 ---
 ## Configuration
 Hermes requires a configuration file to operate. Here's a basic template for the configuration file, config.toml.
-Meaning of those parameters you can always read in [doc](https://hermes.informal.systems/documentation/configuration/description.html):
+You can read about the meaning of these parameters in the [official documentation](https://hermes.informal.systems/documentation/configuration/description.html).
+
+**Warning**: Informal's official documentation to set up Hermes includes creating new clients, channels and connections. This is generally not necessary or wanted, as relay paths often exist already. If you follow this documentation, make sure that it is relevant to create a new path entirely. 
 
 ```bash
 tee $HOME/.hermes/config.toml > /dev/null << EOF
@@ -82,13 +84,19 @@ host = '0.0.0.0'
 port = 3001
 EOF
 ```
-Add networks you would like to relay in the end. Use `vim` or `nano` or any else editor to do this.
-We will use working in testnet Elys<>Juno as example. 
+**Tip**: if you relay multiple chains, Hermes can take a long while to start because it will scan each chain and channel. You can skip this step and make it start much faster by setting the following parameter:
+```
+[mode.clients]
+enabled = false
+```
+
+Add networks you would like to relay in the end. Use `vim` or `nano` or any other editor to do this.
+We will set up the relayer between the Elys and Juno testnets as an example. **Note**: in this instance, we'll assume that Hermes and the two nodes are installed locally, on the same server. If the nodes are remote, their actual IP addresses must be used, and the firewalls configured to allow incoming connnections from Hermes to their RPC and GRPC ports.
 > Pay attention to these parameters:
 > - **memo_prefix** - should be your own, could be random name
 > - **key_name** - some meaningful name, will be set during restore keys
 > - **rpc_addr, grpc_addr, event_source.url** - working and accessible endpoints to your node.
-> - information regarding channel, if you would like to use relay another path could be got here: [paths](https://docs.google.com/spreadsheets/u/3/d/1CuDdV2Rf-ph0HQ5ViUyNY_Z-ix-Rarcd1i4PJKhCuLw/htmlview)
+> - **list** - the channel types and numbers that are being relayed. Each channel on a chain has its _counterpart_ on the other chain. If you would like to relay others paths, find the existing ones here: [paths](https://docs.google.com/spreadsheets/u/3/d/1CuDdV2Rf-ph0HQ5ViUyNY_Z-ix-Rarcd1i4PJKhCuLw/htmlview)
 ```bash
 nano $HOME/.hermes/config.toml
 ```
@@ -161,12 +169,18 @@ list = [
     ['transfer', 'channel-641'], # elys
 ]
 ```
+The gas configuration should be carefully set:
+
+`gas_price = { price = 0.025, denom = 'ujunox' }` should match the `minimum-gas-prices` value in the node's `app.toml`.
+`max_gas`shouldn't exceed the value configured in the chain (the maximum amount of gas used in a single block), which can be obtained by querying an API endpoint, e.g. for Juno: `https://rest.testcosmos.directory/junotestnet/cosmos/consensus/v1/params`.
+`default_gas` is the initial value that Hermes will set when trying to relay a packed, multiplying it by the `gas_multiplier` parameter. If you aren't sure or couldn't find the information, you can set tentative values and monitor the Hermes logs for errors saying `insufficient fees`: the log will tell what was used against what was needed, allowing you to adjust the parameters accordingly.
+The objective here is to be able to relay packets while keeping the costs to a minimum -- as a reminder, the transaction fees are typically paid by the relayer.
 
 ---
 ## Adding Keys
-You need to add keys for both chains in Hermes:
+You need to add keys for both chains in Hermes (the chains _must_ be set up in the configuration file for the command to succeed):
 
->Before execute next step you have created wallets in both chains those are funded and mnemonics are backed up.
+>Before execute the next step, you should have created wallets in both chains, backed up their mnemonics, and funded them.
 
 ```bash
 ELYS_WALLET_MNEMONIC="24 word phrase"
@@ -178,9 +192,11 @@ hermes keys add --key-name elys-relayer --chain elystestnet-1 --mnemonic-file HO
 hermes keys add --key-name juno-relayer --chain uni-6 --mnemonic-file $HOME/.hermes/juno-relayer.txt
 ```
 
+**Important**: make sure that the imported wallet address is correct. In some cases, you will need to specify the _derivation path_ by adding a flag to the command, e.g. for Injective:`--hd-path "m/44'/60'/0'/0/0"`. Find the information about the chain's derivation path at https://cosmos.directory.
+
 ## Starting the Relayer
-With the configuration file in place and keys added, you can start the relayer
-Added service file first.
+With the configuration file in place and keys added, you can start the relayer.
+Add a service file first to run it through `systemd`.
 ```bash
 sudo tee /etc/systemd/system/hermesd.service > /dev/null << EOF
 [Unit]
@@ -197,11 +213,11 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-Enable added service file and start hermes.
+Enable the service and start hermes.
 ```bash
 sudo systemctl enable hermesd.service
-sudo systemctl daemon-reload
 sudo systemctl start hermesd.service
+sudo journalctl -fu hermesd -n 100 #to monitor the activity of the relayer and verify that it works as intended.
 ```
 
 ---
@@ -223,6 +239,7 @@ Update clients with the following:
 hermes update client --host-chain elystestnet-1 --client 07-tendermint-12
 hermes update client --host-chain uni-6 --client 07-tendermint-546
 ```
+**Important**: clients have a "lifespan", which is automatically reset each time they relay a packet. However if there is little to no traffic this lifespan can be reached, in which case the client will expire and the relay path will be closed. A client can only be reactivated through governance. Therefore, to prevent this it is advised to regularly pass this update command, for example as a cron job.  
 
 Check Hermes logs
 ```bash
@@ -242,4 +259,4 @@ sudo systemctl restart hermesd.service
 ----
 ## Conclusion
 This guide provides a basic overview of setting up and running the Hermes IBC relayer. For more advanced configurations and operations, refer to the official Hermes documentation.
-Ensure you replace placeholder values with actual data from your blockchain nodes and configurations. This guide is a starting point, adjust configurations and commands as necessary for your specific setup and requirements.
+Ensure you replace the placeholder values with actual data from your blockchain nodes and configurations. This guide is a starting point, adjust configurations and commands as necessary for your specific setup and requirements.
