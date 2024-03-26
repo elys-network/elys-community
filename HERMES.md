@@ -1,4 +1,4 @@
-# Guide to Running Hermes Relayer
+# Guide to Run Hermes Relayer
 
 ---
 ## What is Hermes?
@@ -8,8 +8,7 @@ Hermes is an IBC (Inter-Blockchain Communication) relayer implemented in Rust, u
 ## Prerequisites
 Before running Hermes, ensure you have the following:
 - Two IBC-enabled blockchain nodes running and accessible.
-- Network access to both blockchain nodes (rpc, grpc avalable)
-
+- Native tokens and network access to both blockchain nodes (rpc, grpc available).
 ---
 ## Installation
 
@@ -35,7 +34,7 @@ if [ -z "$PATH_INCLUDES_GO" ]; then
 fi
 ```
 
-Check hermes is executable and running without issues
+Check hermes is executable and running without issues.
 ```bash
 hermes version 
 # 2024-03-24T17:39:37.086297Z  INFO ThreadId(01) running Hermes v1.8.2+06dfbaf
@@ -85,8 +84,8 @@ EOF
 Add networks you would like to relay in the end. Use `vim` or `nano` or any else editor to do this.
 We will use working in testnet Elys<>Juno as example. 
 > Pay attention to these parameters:
-> - **memo_prefix** - should be your own, could be random name
-> - **key_name** - some meaningful name, will be set during restore keys
+> - **memo_prefix** - should be your own, could be random names
+> - **key_name** - some meaningful names, will be set during restore keys
 > - **rpc_addr, grpc_addr, event_source.url** - working and accessible endpoints to your node.
 > - information regarding channel, if you would like to use relay another path could be got here: [paths](https://docs.google.com/spreadsheets/u/3/d/1CuDdV2Rf-ph0HQ5ViUyNY_Z-ix-Rarcd1i4PJKhCuLw/htmlview)
 ```bash
@@ -164,9 +163,9 @@ list = [
 
 ---
 ## Adding Keys
-You need to add keys for both chains in Hermes:
+You need to add keys for both chains in Hermes, do not use wallets for anything else but relaying to avoid running into account sequence errors. Make sure wallets in both chains are funded and mnemonics are backed up.
 
->Before execute next step you have created wallets in both chains those are funded and mnemonics are backed up.
+>Execute the following:
 
 ```bash
 ELYS_WALLET_MNEMONIC="24 word phrase"
@@ -177,10 +176,25 @@ echo $JUNO_WALLET_MNEMONIC >> $HOME/.hermes/juno-relayer.txt
 hermes keys add --key-name elys-relayer --chain elystestnet-1 --mnemonic-file HOME/.hermes/elys-relayer.txt
 hermes keys add --key-name juno-relayer --chain uni-6 --mnemonic-file $HOME/.hermes/juno-relayer.txt
 ```
+## Verify configuration files 
+After editing config.toml and adding wallet keys, it’s time to test the configurations and ensure the system is healthy. Run the following:
+
+```bash
+hermes health-check
+hermes config validate
+```
+
+You should see similar output:
+
+```bash
+SUCCESS performed health check for all chains in the config
+SUCCESS "configuration is valid"
+```
 
 ## Starting the Relayer
 With the configuration file in place and keys added, you can start the relayer
-Added service file first.
+
+Create Hermes service file
 ```bash
 sudo tee /etc/systemd/system/hermesd.service > /dev/null << EOF
 [Unit]
